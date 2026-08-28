@@ -6,6 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RolesModule } from './roles/roles.module';
 import { databaseConfig } from './config/database.config';
+import { ComunidadModule } from './comunidad/comunidad.module';
+import { LenguaModule } from './lengua/lengua.module';
 
 @Module({
   imports: [
@@ -20,6 +22,10 @@ import { databaseConfig } from './config/database.config';
     }),
 
     RolesModule,
+
+    ComunidadModule,
+
+    LenguaModule,
   ],
 
   controllers: [AppController],
