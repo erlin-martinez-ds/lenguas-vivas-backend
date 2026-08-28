@@ -25,7 +25,7 @@ export class RolesService {
 
   async findOne(id: number): Promise<Rol> {
     const rol = await this.rolRepository.findOne({
-      where: { id_rol: id },
+      where: { id }
     });
 
     if (!rol) {
