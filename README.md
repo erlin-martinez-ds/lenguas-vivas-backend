@@ -1,98 +1,617 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Lenguas Vivas - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend de la plataforma **Lenguas Vivas**, desarrollado para apoyar el aprendizaje, enseñanza y preservación de las lenguas indígenas.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+La aplicación proporciona una **API REST** encargada de gestionar la información y la lógica de negocio de la plataforma.
 
-## Description
+El backend está desarrollado utilizando **NestJS**, **TypeORM** y **MySQL**, aplicando una arquitectura modular y separación de responsabilidades entre entidades, DTOs, servicios y controladores.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## Tecnologías utilizadas
 
-```bash
-$ npm install
-```
+* **Node.js**
+* **NestJS**
+* **TypeScript**
+* **TypeORM**
+* **MySQL**
+* **class-validator**
+* **class-transformer**
+* **npm**
+* **Postman**
+* **Git y GitHub**
 
-## Compile and run the project
+---
 
-```bash
-# development
-$ npm run start
+## Requisitos previos
 
-# watch mode
-$ npm run start:dev
+Antes de ejecutar el proyecto se deben tener instalados:
 
-# production mode
-$ npm run start:prod
-```
+* Node.js
+* npm
+* MySQL
+* Git
+* Postman (para realizar las pruebas de la API)
 
-## Run tests
+Se recomienda utilizar una versión reciente de Node.js.
+
+Para comprobar las instalaciones:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+node --version
+npm --version
+mysql --version
+git --version
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Instalación
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 1. Clonar el repositorio
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+git clone https://github.com/erlin-martinez-ds/lenguas-vivas-backend.git
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 2. Ingresar al proyecto
 
-## Resources
+```bash
+cd lenguas-vivas-backend
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### 3. Instalar las dependencias
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+npm install
+```
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Configuración de la base de datos
 
-## Stay in touch
+El backend utiliza **MySQL** como sistema gestor de base de datos y **TypeORM** para la comunicación entre NestJS y MySQL.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Antes de ejecutar el proyecto se debe crear la base de datos en MySQL.
 
-## License
+Ejemplo:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```sql
+CREATE DATABASE lenguas_vivas;
+```
+
+El nombre de la base de datos debe coincidir con el valor configurado en la variable `DB_DATABASE`.
+
+---
+
+## Variables de entorno
+
+La conexión con MySQL se configura mediante variables de entorno.
+
+En la raíz del proyecto se debe crear un archivo:
+
+```text
+.env
+```
+
+Ejemplo de configuración:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=tu_usuario
+DB_PASSWORD=tu_contraseña
+DB_DATABASE=lenguas_vivas
+```
+
+### Descripción de las variables
+
+| Variable      | Descripción                       |
+| ------------- | --------------------------------- |
+| `DB_HOST`     | Servidor donde se encuentra MySQL |
+| `DB_PORT`     | Puerto utilizado por MySQL        |
+| `DB_USERNAME` | Usuario de MySQL                  |
+| `DB_PASSWORD` | Contraseña del usuario de MySQL   |
+| `DB_DATABASE` | Nombre de la base de datos        |
+
+> **Importante:** El archivo `.env` contiene información privada y no debe subirse al repositorio de GitHub.
+
+---
+
+## Configuración de TypeORM
+
+La configuración de la conexión se encuentra separada de `AppModule` para mantener una mejor organización del proyecto.
+
+```text
+src/
+└── config/
+    └── database.config.ts
+```
+
+TypeORM se encarga de establecer la conexión con MySQL y cargar automáticamente las entidades utilizadas por los diferentes módulos.
+
+---
+
+## Ejecución del proyecto
+
+### Modo desarrollo
+
+Para iniciar el servidor en modo desarrollo:
+
+```bash
+npm run start:dev
+```
+
+Cuando la aplicación se inicia correctamente se mostrará un mensaje similar a:
+
+```text
+Nest application successfully started
+```
+
+Por defecto, la API estará disponible en:
+
+```text
+http://localhost:3000
+```
+
+### Ejecutar normalmente
+
+```bash
+npm run start
+```
+
+### Compilar el proyecto
+
+Para comprobar que el proyecto compila correctamente:
+
+```bash
+npm run build
+```
+
+### Ejecutar la versión compilada
+
+```bash
+npm run start:prod
+```
+
+---
+
+# Estructura del proyecto
+
+La estructura principal del backend se organiza mediante módulos:
+
+```text
+src/
+│
+├── config/
+│   └── database.config.ts
+│
+├── roles/
+│   ├── dto/
+│   │   ├── create-rol.dto.ts
+│   │   └── update-rol.dto.ts
+│   │
+│   ├── entities/
+│   │   └── rol.entity.ts
+│   │
+│   ├── roles.controller.ts
+│   ├── roles.module.ts
+│   └── roles.service.ts
+│
+├── app.controller.ts
+├── app.module.ts
+└── main.ts
+```
+
+---
+
+# Arquitectura
+
+El proyecto aplica una separación de responsabilidades entre las diferentes capas.
+
+```text
+Cliente / Postman
+       │
+       ▼
+ Controller
+       │
+       ▼
+ Service
+       │
+       ▼
+ TypeORM
+       │
+       ▼
+ MySQL
+```
+
+### Entidades
+
+Representan las tablas de la base de datos mediante clases de TypeScript y decoradores de TypeORM.
+
+### DTO
+
+Los **Data Transfer Objects (DTO)** definen la estructura de los datos que pueden recibirse mediante las peticiones HTTP.
+
+También permiten aplicar validaciones sobre los datos recibidos.
+
+### Services
+
+Contienen la lógica de negocio y se encargan de comunicarse con la capa de datos mediante TypeORM.
+
+### Controllers
+
+Se encargan de recibir las peticiones HTTP y exponer los diferentes endpoints de la API REST.
+
+### Modules
+
+Agrupan las entidades, controladores y servicios relacionados con una funcionalidad específica.
+
+---
+
+# Módulos implementados
+
+Actualmente se encuentra implementado:
+
+* [x] Configuración de conexión con MySQL y TypeORM
+* [x] Módulo de Roles
+* [x] Entidad `Rol`
+* [x] DTO de creación
+* [x] DTO de actualización
+* [x] Validaciones
+* [x] CRUD de Roles
+
+Los demás módulos serán incorporados progresivamente durante el desarrollo del proyecto.
+
+---
+
+# API REST
+
+## Módulo de Roles
+
+El módulo de Roles permite administrar los roles utilizados dentro de la plataforma.
+
+### Crear un rol
+
+**Método:**
+
+```text
+POST
+```
+
+**Endpoint:**
+
+```text
+http://localhost:3000/roles
+```
+
+**Body:**
+
+```json
+{
+  "nombre": "Administrador"
+}
+```
+
+**Respuesta esperada:**
+
+```json
+{
+  "id_rol": 1,
+  "nombre": "Administrador"
+}
+```
+
+---
+
+### Listar todos los roles
+
+**Método:**
+
+```text
+GET
+```
+
+**Endpoint:**
+
+```text
+http://localhost:3000/roles
+```
+
+Devuelve todos los roles registrados en la base de datos.
+
+---
+
+### Consultar un rol por ID
+
+**Método:**
+
+```text
+GET
+```
+
+**Endpoint:**
+
+```text
+http://localhost:3000/roles/:id
+```
+
+Ejemplo:
+
+```text
+GET http://localhost:3000/roles/1
+```
+
+---
+
+### Actualizar un rol
+
+**Método:**
+
+```text
+PATCH
+```
+
+**Endpoint:**
+
+```text
+http://localhost:3000/roles/:id
+```
+
+Ejemplo:
+
+```text
+PATCH http://localhost:3000/roles/1
+```
+
+**Body:**
+
+```json
+{
+  "nombre": "Administrador del sistema"
+}
+```
+
+---
+
+### Eliminar un rol
+
+**Método:**
+
+```text
+DELETE
+```
+
+**Endpoint:**
+
+```text
+http://localhost:3000/roles/:id
+```
+
+Ejemplo:
+
+```text
+DELETE http://localhost:3000/roles/1
+```
+
+---
+
+# Validaciones
+
+El proyecto utiliza:
+
+* `class-validator`
+* `class-transformer`
+* `ValidationPipe`
+
+La validación se configura de manera global en `main.ts`.
+
+Actualmente las peticiones de Roles validan los datos enviados mediante los DTO correspondientes.
+
+Además, se utiliza:
+
+```typescript
+whitelist: true
+```
+
+para permitir únicamente las propiedades definidas en los DTO.
+
+También se utiliza:
+
+```typescript
+forbidNonWhitelisted: true
+```
+
+para rechazar peticiones que contengan propiedades no permitidas.
+
+---
+
+# Manejo de errores
+
+La API utiliza códigos de estado HTTP para informar el resultado de las operaciones.
+
+| Código                      | Significado                           |
+| --------------------------- | ------------------------------------- |
+| `200 OK`                    | Operación realizada correctamente     |
+| `201 Created`               | Recurso creado correctamente          |
+| `400 Bad Request`           | Datos inválidos o petición incorrecta |
+| `404 Not Found`             | Recurso solicitado no encontrado      |
+| `500 Internal Server Error` | Error interno del servidor            |
+
+---
+
+# Pruebas con Postman
+
+Para realizar las pruebas se debe iniciar primero el backend:
+
+```bash
+npm run start:dev
+```
+
+La dirección base de la API es:
+
+```text
+http://localhost:3000
+```
+
+## Ejemplo de prueba
+
+### Crear un rol
+
+En Postman seleccionar:
+
+```text
+POST
+```
+
+URL:
+
+```text
+http://localhost:3000/roles
+```
+
+En:
+
+```text
+Body → raw → JSON
+```
+
+enviar:
+
+```json
+{
+  "nombre": "Administrador"
+}
+```
+
+La respuesta esperada será similar a:
+
+```json
+{
+  "id_rol": 1,
+  "nombre": "Administrador"
+}
+```
+
+Posteriormente se pueden probar las operaciones:
+
+```text
+GET     /roles
+GET     /roles/:id
+PATCH   /roles/:id
+DELETE  /roles/:id
+```
+
+---
+
+# Pruebas de validación
+
+También se pueden realizar pruebas enviando información incorrecta para comprobar las validaciones.
+
+Por ejemplo, enviar un objeto vacío:
+
+```json
+{}
+```
+
+o enviar propiedades no permitidas:
+
+```json
+{
+  "nombre": "Administrador",
+  "campoNoPermitido": "valor"
+}
+```
+
+La API debe rechazar las peticiones que no cumplan con las reglas establecidas.
+
+---
+
+# Control de versiones
+
+El proyecto utiliza **Git y GitHub** para el control de versiones y el trabajo colaborativo.
+
+No se trabaja directamente sobre `main`.
+
+Cada funcionalidad se desarrolla mediante una rama independiente.
+
+Ejemplos:
+
+```text
+feature/configuracion-typeorm
+feature/modulo-roles
+feature/documentacion-readme
+```
+
+## Flujo de trabajo
+
+```text
+main
+ │
+ ├── feature/configuracion-typeorm
+ │          │
+ │          └── Pull Request → Merge
+ │
+ ├── feature/modulo-roles
+ │          │
+ │          └── Pull Request → Revisión → Merge
+ │
+ └── feature/documentacion-readme
+            │
+            └── Pull Request → Revisión → Merge
+```
+
+Cada funcionalidad debe contar con commits descriptivos y posteriormente integrarse mediante un Pull Request.
+
+---
+
+# Comandos principales
+
+| Comando              | Función                      |
+| -------------------- | ---------------------------- |
+| `npm install`        | Instalar dependencias        |
+| `npm run start`      | Iniciar el proyecto          |
+| `npm run start:dev`  | Iniciar en modo desarrollo   |
+| `npm run start:prod` | Ejecutar versión compilada   |
+| `npm run build`      | Compilar el proyecto         |
+| `npm run test`       | Ejecutar pruebas unitarias   |
+| `npm run test:e2e`   | Ejecutar pruebas End-to-End  |
+| `npm run test:cov`   | Generar reporte de cobertura |
+
+---
+
+# Estado del proyecto
+
+El proyecto se encuentra actualmente en desarrollo.
+
+### Funcionalidades
+
+* [x] Configuración inicial de NestJS
+* [x] Configuración de variables de entorno
+* [x] Conexión con MySQL
+* [x] Configuración de TypeORM
+* [x] Módulo de Roles
+* [x] CRUD de Roles
+* [x] DTOs
+* [x] Validaciones
+* [x] Manejo de errores
+* [x] Documentación inicial
+* [x] Módulo de Usuarios
+* [x] Módulo de Lenguas
+* [x] Módulo de Comunidades
+* [ ] Relaciones entre entidades
+* [ ] Autenticación y autorización
+* [ ] Demás funcionalidades de la plataforma
+
+---
+
+# Proyecto académico
+
+**Materia:** Proyecto de Software 2
+
+El proyecto se desarrolla bajo una modalidad grupal con evaluación individual, utilizando buenas prácticas de desarrollo, arquitectura por capas, control de versiones y trabajo colaborativo mediante GitHub.
+
+---
+
+
+
