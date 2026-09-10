@@ -1,4 +1,13 @@
-import { IsBoolean, IsNotEmpty, IsOptional, IsString, MaxLength, IsInt, Min } from 'class-validator';
+import {
+  IsBoolean,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+  Min,
+  IsPositive,
+} from 'class-validator';
 
 export class CreateCursoDto {
   @IsString()
@@ -18,4 +27,8 @@ export class CreateCursoDto {
   @IsBoolean()
   @IsOptional()
   activo?: boolean;
+
+  @IsInt()
+  @IsPositive()
+  lenguaId: number;
 }

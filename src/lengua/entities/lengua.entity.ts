@@ -1,5 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Comunidad } from '../../comunidad/entities/comunidad.entity';
+import { Curso } from '../../cursos/entities/curso.entity';
 
 @Entity('lenguas')
 export class Lengua {
@@ -9,7 +17,12 @@ export class Lengua {
   @Column({ type: 'varchar', length: 100 })
   nombre: string;
 
-  @ManyToOne(() => Comunidad, (comunidad) => comunidad.lenguas, { eager: true })
+  @ManyToOne(() => Comunidad, (comunidad) => comunidad.lenguas, {
+    eager: true,
+  })
   @JoinColumn({ name: 'comunidad_id' })
   comunidad: Comunidad;
+
+  @OneToMany(() => Curso, (curso) => curso.lengua)
+  cursos: Curso[];
 }
