@@ -18,7 +18,7 @@ import { CursosModule } from './cursos/cursos.module';
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_DATABASE || 'lenguas_vivas_db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
     }),
     RolesModule,
     UsuarioModule,
