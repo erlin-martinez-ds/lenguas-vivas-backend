@@ -7,7 +7,6 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Comunidad } from '../../comunidad/entities/comunidad.entity';
-import { Curso } from '../../cursos/entities/curso.entity';
 
 @Entity('lenguas')
 export class Lengua {
@@ -23,6 +22,5 @@ export class Lengua {
   @JoinColumn({ name: 'comunidad_id' })
   comunidad: Comunidad;
 
-  @OneToMany(() => Curso, (curso) => curso.lengua)
-  cursos: Curso[];
+  
 }
