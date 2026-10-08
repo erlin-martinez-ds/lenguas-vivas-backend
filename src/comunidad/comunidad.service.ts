@@ -9,12 +9,16 @@ import { Repository } from 'typeorm';
 import { Comunidad } from './entities/comunidad.entity';
 import { CreateComunidadDto } from './dto/create-comunidad.dto';
 import { UpdateComunidadDto } from './dto/update-comunidad.dto';
+import { Lengua } from '../lengua/entities/lengua.entity';
 
 @Injectable()
 export class ComunidadService {
   constructor(
     @InjectRepository(Comunidad)
     private readonly comunidadRepository: Repository<Comunidad>,
+
+    @InjectRepository(Lengua)
+    private readonly lenguaRepository: Repository<Lengua>,
   ) {}
 
   private async validarNombreDuplicado(
@@ -43,18 +47,40 @@ export class ComunidadService {
   async crear(createComunidadDto: CreateComunidadDto): Promise<Comunidad> {
     await this.validarNombreDuplicado(createComunidadDto.nombre);
 
-    const comunidad = this.comunidadRepository.create(createComunidadDto);
+    const lengua = await this.lenguaRepository.findOneBy({
+      id: createComunidadDto.id_lengua,
+    });
 
-    return this.comunidadRepository.save(comunidad);
+    if (!lengua) {
+      throw new NotFoundException(
+        `La lengua con ID ${createComunidadDto.id_lengua} no existe`,
+      );
+    }
+
+    const comunidad = this.comunidadRepository.create({
+      nombre: createComunidadDto.nombre,
+      descripcion: createComunidadDto.descripcion ?? null,
+      estado: createComunidadDto.estado ?? 'ACTIVA',
+      id_lengua: lengua.id,
+    });
+
+    return await this.comunidadRepository.save(comunidad);
   }
 
-  obtenerTodas(): Promise<Comunidad[]> {
-    return this.comunidadRepository.find();
+  async obtenerTodas(): Promise<Comunidad[]> {
+    return await this.comunidadRepository.find({
+      relations: {
+        lengua: true,
+      },
+    });
   }
 
   async obtenerUna(id: number): Promise<Comunidad> {
     const comunidad = await this.comunidadRepository.findOne({
       where: { id },
+      relations: {
+        lengua: true,
+      },
     });
 
     if (!comunidad) {
@@ -75,7 +101,30 @@ export class ComunidadService {
       comunidad.nombre = updateComunidadDto.nombre;
     }
 
-    return this.comunidadRepository.save(comunidad);
+    if (updateComunidadDto.descripcion !== undefined) {
+      comunidad.descripcion = updateComunidadDto.descripcion;
+    }
+
+    if (updateComunidadDto.estado !== undefined) {
+      comunidad.estado = updateComunidadDto.estado;
+    }
+
+    if (updateComunidadDto.id_lengua !== undefined) {
+      const lengua = await this.lenguaRepository.findOneBy({
+        id: updateComunidadDto.id_lengua,
+      });
+
+      if (!lengua) {
+        throw new NotFoundException(
+          `La lengua con ID ${updateComunidadDto.id_lengua} no existe`,
+        );
+      }
+
+      comunidad.id_lengua = lengua.id;
+      comunidad.lengua = lengua;
+    }
+
+    return await this.comunidadRepository.save(comunidad);
   }
 
   async eliminar(id: number): Promise<void> {

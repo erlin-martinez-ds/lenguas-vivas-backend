@@ -5,7 +5,10 @@ import { RolesModule } from './roles/roles.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { ComunidadModule } from './comunidad/comunidad.module';
 import { LenguaModule } from './lengua/lengua.module';
-import { CursosModule } from './cursos/cursos.module';
+import { InstitucionModule } from './institucion/institucion.module';
+import { GradoModule } from './grado/grado.module';
+import { UsuarioInstitucionModule } from './usuario-institucion/usuario-institucion.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,7 +27,10 @@ import { CursosModule } from './cursos/cursos.module';
     UsuarioModule,
     ComunidadModule,
     LenguaModule,
-    CursosModule,
+    InstitucionModule,
+    GradoModule,
+    UsuarioInstitucionModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

@@ -6,15 +6,26 @@ import {
   MaxLength,
 } from 'class-validator';
 
-export class CreateLenguaDto {
+export class CreateInstitucionDto {
   @IsNotEmpty()
   @IsString()
   @MaxLength(150)
   nombre: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
-  descripcion?: string;
+  @MaxLength(255)
+  direccion: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(100)
+  municipio: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(100)
+  departamento: string;
 
   @IsOptional()
   @IsEnum(['ACTIVA', 'INACTIVA'])
