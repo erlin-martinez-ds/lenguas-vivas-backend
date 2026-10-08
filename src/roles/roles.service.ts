@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -44,8 +48,14 @@ export class RolesService {
   }
 
   async remove(id: number): Promise<void> {
-    const rol = await this.findOne(id);
+  const rol = await this.findOne(id);
 
+  try {
     await this.rolRepository.remove(rol);
+  } catch (error) {
+    throw new ConflictException(
+      'No se puede eliminar el rol porque tiene usuarios asociados',
+    );
+  }
   }
 }

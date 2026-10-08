@@ -5,7 +5,10 @@ import { RolesModule } from './roles/roles.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { ComunidadModule } from './comunidad/comunidad.module';
 import { LenguaModule } from './lengua/lengua.module';
-import { CursosModule } from './cursos/cursos.module';
+import { InstitucionModule } from './institucion/institucion.module';
+import { GradoModule } from './grado/grado.module';
+import { UsuarioInstitucionModule } from './usuario-institucion/usuario-institucion.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -18,13 +21,16 @@ import { CursosModule } from './cursos/cursos.module';
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_DATABASE || 'lenguas_vivas_db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
     }),
     RolesModule,
     UsuarioModule,
     ComunidadModule,
     LenguaModule,
-    CursosModule,
+    InstitucionModule,
+    GradoModule,
+    UsuarioInstitucionModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
