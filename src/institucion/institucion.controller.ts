@@ -7,15 +7,12 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 
 import { InstitucionService } from './institucion.service';
-
 import { CreateInstitucionDto } from './dto/create-institucion.dto';
-
 import { UpdateInstitucionDto } from './dto/update-institucion.dto';
-
-import { UseGuards } from '@nestjs/common';
 
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
@@ -32,16 +29,20 @@ export class InstitucionController {
     return this.institucionService.crear(createDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   obtenerTodas() {
     return this.institucionService.obtenerTodas();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   obtenerUna(@Param('id', ParseIntPipe) id: number) {
     return this.institucionService.obtenerUna(id);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMINISTRADOR', 'RECTOR')
   @Patch(':id')
   actualizar(
     @Param('id', ParseIntPipe) id: number,
@@ -50,6 +51,8 @@ export class InstitucionController {
     return this.institucionService.actualizar(id, updateInstitucionDto);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMINISTRADOR')
   @Delete(':id')
   eliminar(@Param('id', ParseIntPipe) id: number) {
     return this.institucionService.eliminar(id);
