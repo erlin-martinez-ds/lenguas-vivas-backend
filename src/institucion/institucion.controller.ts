@@ -9,6 +9,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { InstitucionService } from './institucion.service';
 import { CreateInstitucionDto } from './dto/create-institucion.dto';
@@ -19,6 +20,8 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 
 @Controller('instituciones')
+@ApiTags('Instituciones')
+@ApiBearerAuth()
 export class InstitucionController {
   constructor(private readonly institucionService: InstitucionService) {}
 

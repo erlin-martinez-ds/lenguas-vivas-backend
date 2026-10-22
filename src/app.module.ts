@@ -9,7 +9,10 @@ import { InstitucionModule } from './institucion/institucion.module';
 import { GradoModule } from './grado/grado.module';
 import { UsuarioInstitucionModule } from './usuario-institucion/usuario-institucion.module';
 import { AuthModule } from './auth/auth.module';
-
+import { NivelModule } from './nivel/nivel.module';
+import { TemaModule } from './tema/tema.module';
+import { ActividadModule } from './actividad/actividad.module';
+import { EvaluacionModule } from './evaluacion/evaluacion.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -31,6 +34,10 @@ import { AuthModule } from './auth/auth.module';
     GradoModule,
     UsuarioInstitucionModule,
     AuthModule,
+    NivelModule,
+    TemaModule,
+    ActividadModule,
+    EvaluacionModule,
   ],
 })
 export class AppModule {}
