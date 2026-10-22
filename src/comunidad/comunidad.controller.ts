@@ -9,6 +9,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { ComunidadService } from './comunidad.service';
 import { CreateComunidadDto } from './dto/create-comunidad.dto';
@@ -19,6 +20,8 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 
 @Controller('comunidad')
+@ApiTags('Comunidades')
+@ApiBearerAuth()
 export class ComunidadController {
   constructor(private readonly comunidadService: ComunidadService) {}
 

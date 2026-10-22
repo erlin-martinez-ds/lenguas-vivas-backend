@@ -9,6 +9,7 @@ import {
   ParseIntPipe,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { LenguaService } from './lengua.service';
 import { CreateLenguaDto } from './dto/create-lengua.dto';
@@ -19,6 +20,8 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 
 @Controller('lenguas')
+@ApiTags('Lenguas')
+@ApiBearerAuth()
 export class LenguaController {
   constructor(private readonly lenguaService: LenguaService) {}
 
