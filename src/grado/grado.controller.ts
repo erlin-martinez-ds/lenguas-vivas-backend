@@ -1,4 +1,3 @@
-
 import {
   Body,
   Controller,
@@ -24,9 +23,7 @@ import { Roles } from '../auth/decorators/roles.decorator';
 @ApiTags('Grados')
 @ApiBearerAuth()
 export class GradoController {
-  constructor(
-    private readonly gradoService: GradoService,
-  ) {}
+  constructor(private readonly gradoService: GradoService) {}
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMINISTRADOR')
@@ -43,9 +40,7 @@ export class GradoController {
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  obtenerUno(
-    @Param('id', ParseIntPipe) id: number,
-  ) {
+  obtenerUno(@Param('id', ParseIntPipe) id: number) {
     return this.gradoService.obtenerUno(id);
   }
 
@@ -56,18 +51,13 @@ export class GradoController {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateGradoDto: UpdateGradoDto,
   ) {
-    return this.gradoService.actualizar(
-      id,
-      updateGradoDto,
-    );
+    return this.gradoService.actualizar(id, updateGradoDto);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMINISTRADOR')
   @Delete(':id')
-  eliminar(
-    @Param('id', ParseIntPipe) id: number,
-  ) {
+  eliminar(@Param('id', ParseIntPipe) id: number) {
     return this.gradoService.eliminar(id);
   }
 }
